@@ -5,7 +5,7 @@ USE PAYROLL;
 -- EMPLOYEES TABLE --
 DROP TABLE IF EXISTS EMPLOYEES;
 CREATE TABLE EMPLOYEES(
-	employee_id INT(10) NOT NULL,
+    employee_id INT(10) NOT NULL,
     F_name VARCHAR(50) NOT NULL,
     L_name VARCHAR(50) NOT NULL,
     M_initial CHAR(10),
@@ -14,6 +14,7 @@ CREATE TABLE EMPLOYEES(
     salary DECIMAL(19) NOT NULL,
     PRIMARY KEY(employee_id)
 );
+
 -- EMPLOYEE INPUT --
 INSERT INTO EMPLOYEES(employee_id, F_name, L_name, M_initial, gender, jobname, salary)
 VALUES
@@ -27,20 +28,16 @@ VALUES
     (9, "Ella", "Ho", "M", "F", "Data Analyst", 95000),
     (10, "William", "Johnson", "S", "M", "Systems Administrator", 125000);
 
-
-
-;
 DROP TABLE IF EXISTS DEDUCTIONS;
 CREATE TABLE DEDUCTIONS (
-	deduction_id INT auto_increment primary KEY,
+    deduction_id INT AUTO_INCREMENT PRIMARY KEY,
     F_name VARCHAR(50) NOT NULL, 
     L_name VARCHAR(50) NOT NULL, 
-    amount DECIMAL (10,2),
-    salary_id INT,
-    FOREIGN KEY (salary_id) REFERENCES Salary (salary_id)
-    );
-    
-    -- DEDUCTION INSERT--
+    amount DECIMAL(10,2),
+    salary_id INT
+);
+
+-- DEDUCTION INSERT--
 INSERT INTO DEDUCTIONS(F_name, L_name, amount, salary_id)
 VALUES
     ("John", "Doe", 15000, 1),
@@ -52,8 +49,6 @@ VALUES
     ("Emy", "Martinez", 12000, 7),
     ("Ella", "Ho", 9500, 9),
     ("William", "Johnson", 12500, 10);
-    
-
 
 CREATE TABLE Payroll (
     payroll_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -63,7 +58,7 @@ CREATE TABLE Payroll (
     total_earnings DECIMAL(10, 2),
     total_deductions DECIMAL(10, 2),
     net_payment DECIMAL(10, 2),
-    FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+    FOREIGN KEY (employee_id) REFERENCES EMPLOYEES(employee_id)
 );
 
 -- INSERT PAYROLL--
